@@ -6,7 +6,7 @@ osa-imessage
 ![](https://img.shields.io/npm/l/osa-imessage.svg?style=flat-square)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-> Send and receive iMessages through nodejs
+> Send and receive iMessages/SMS through nodejs
 
 Installation
 ===

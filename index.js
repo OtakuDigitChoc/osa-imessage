@@ -92,21 +92,17 @@ function nameForHandle(handle) {
 }
 
 // Sends a message to the given handle
-function send(handle, message) {
+function send(handle, message, type = 'imessage') {
     assert(typeof handle == 'string', 'handle must be a string')
     assert(typeof message == 'string', 'message must be a string')
-    return osa((handle, message) => {
+    return osa((handle, message, type) => {
         const Messages = Application('Messages')
 
         let target
-
-        try {
-            target = Messages.buddies.whose({ handle: handle })[0]
-        } catch (e) {}
-
-        try {
-            target = Messages.textChats.byId('iMessage;+;' + handle)()
-        } catch (e) {}
+        
+        const smsService = Messages.services.byName("SMS")
+        const myBuddyList = smsService.buddies.whose({handle:{_equals: handle}})
+        target = myBuddyList[0]
 
         try {
             Messages.send(message, { to: target })
